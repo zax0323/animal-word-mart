@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小动物单词超市</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              sunset: { 300: "#FFB84C", 400: "#FFA024" },
+              grape: { 500: "#6C52A3", 700: "#513B82", 900: "#3A235D" },
+              brick: { 300: "#FF9E9E", 400: "#F07A7A" },
+              cream: { 100: "#FFF3DA", 200: "#FFE5B4" },
+              sprout: "#7FB77E"
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Zpix", "Galmuri11", "Press Start 2P", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: #1f1730;
+      }
+
+      .pixel-button {
+        box-shadow:
+          inset 0 -4px 0 rgba(0, 0, 0, 0.12),
+          0 6px 0 rgba(58, 35, 93, 0.82);
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+
+      .pixel-button:hover {
+        transform: translateY(-2px);
+      }
+
+      .pixel-button:active {
+        transform: translateY(4px);
+        box-shadow:
+          inset 0 -2px 0 rgba(0, 0, 0, 0.1),
+          0 2px 0 rgba(58, 35, 93, 0.82);
+      }
+
+      .pixel-outline {
+        border: 4px solid #3a235d;
+      }
+
+      .pixel-panel {
+        border: 4px solid #3a235d;
+        box-shadow:
+          inset 0 0 0 4px #ffe5b4,
+          0 8px 0 rgba(58, 35, 93, 0.88);
+      }
+
+      .pixel-card {
+        border: 4px solid #ffb84c;
+        box-shadow:
+          inset 0 0 0 4px #fff7ec,
+          0 6px 0 #d87b15;
+      }
+
+      .pixel-speech {
+        clip-path: polygon(0 0, 100% 0, 100% 86%, 68% 86%, 61% 100%, 54% 86%, 0 86%);
+      }
+
+      .pixel-grid {
+        image-rendering: pixelated;
+      }
+
+      .asset-missing {
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%) 0 0/16px 16px,
+          linear-gradient(225deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%) 0 0/16px 16px,
+          linear-gradient(315deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%) 0 0/16px 16px,
+          linear-gradient(45deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%) 0 0/16px 16px,
+          linear-gradient(180deg, #7e5db7, #5f4699);
+      }
+
+    </style>
+  </head>
+  <body class="text-white">
+    <audio
+      id="bgm"
+      src="./assets/audio/bgm.mp3"
+      autoplay
+      loop
+      muted
+      preload="auto"
+      playsinline
+    ></audio>
+    <main id="app" class="min-h-screen"></main>
+    <script>
+      const bgm = document.getElementById("bgm");
+
+      if (bgm) {
+        bgm.volume = 0.35;
+        window.addEventListener("load", () => {
+          bgm.play().catch(() => {});
+        });
+
+        window.addEventListener(
+          "click",
+          async () => {
+            bgm.muted = false;
+
+            try {
+              await bgm.play();
+            } catch (_) {}
+          },
+          { once: true }
+        );
+      }
+    </script>
+    <script src="./app.js"></script>
+  </body>
+  </html>
