@@ -84,38 +84,50 @@
     </style>
   </head>
   <body class="text-white">
-    <audio
-      id="bgm"
-      src="./assets/audio/bgm.mp3"
-      autoplay
-      loop
-      muted
-      preload="auto"
-      playsinline
-    ></audio>
     <main id="app" class="min-h-screen"></main>
+    
     <script>
-      const bgm = document.getElementById("bgm");
+      // Deferred audio: starts loading after page is fully rendered, not on load
+      let bgm = null;
+      window.addEventListener("load", () => {
+        // Wait 500ms after page load so images render first
+        setTimeout(() => {
+          const audio = document.createElement("audio");
+          audio.loop = true;
+          audio.muted = true;
+          audio.volume = 0.35;
+          audio.preload = "none";
+          audio.setAttribute("playsinline", "");
+          audio.innerHTML = '<source src="./assets/audio/bgm.mp3" type="audio/mpeg">';
+          audio.id = "bgm";
+          document.body.appendChild(audio);
+          bgm = audio;
+        }, 500);
+      });
 
-      if (bgm) {
-        bgm.volume = 0.35;
-        window.addEventListener("load", () => {
+      // User first click: start preloading and unmute
+      document.addEventListener("click", () => {
+        if (bgm) {
+          bgm.preload = "auto";
+          bgm.load();
+          bgm.muted = false;
           bgm.play().catch(() => {});
-        });
-
-        window.addEventListener(
-          "click",
-          async () => {
-            bgm.muted = false;
-
-            try {
-              await bgm.play();
-            } catch (_) {}
-          },
-          { once: true }
-        );
-      }
+        } else {
+          // Create instantly if not created yet
+          const audio = document.createElement("audio");
+          audio.loop = true;
+          audio.muted = false;
+          audio.volume = 0.35;
+          audio.preload = "auto";
+          audio.setAttribute("playsinline", "");
+          audio.innerHTML = '<source src="./assets/audio/bgm.mp3" type="audio/mpeg">';
+          audio.id = "bgm";
+          document.body.appendChild(audio);
+          bgm = audio;
+          bgm.play().catch(() => {});
+        }
+      }, { once: true });
     </script>
-    <script src="./app.js?v=2"></script>
+    <script src="./app.js"></script>
   </body>
   </html>
