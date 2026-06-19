@@ -40,9 +40,9 @@ const foods = [
   { id: "candy", word: "candy", zh: "糖果", image: "assets/foods/candy.png" },
   { id: "cheese", word: "cheese", zh: "奶酪", image: "assets/foods/cheese.png" },
   { id: "cookie", word: "cookie", zh: "饼干", image: "assets/foods/cookie.png" },
-  { id: "donut", word: "donut", zh: "甜甜�?, image: "assets/foods/donut.png" },
+  { id: "donut", word: "donut", zh: "甜甜圈", image: "assets/foods/donut.png" },
   { id: "egg", word: "egg", zh: "鸡蛋", image: "assets/foods/egg.png" },
-  { id: "ice-cream", word: "ice cream", zh: "冰淇�?, image: "assets/foods/ice%20cream.png" },
+  { id: "ice-cream", word: "ice cream", zh: "冰淇淋", image: "assets/foods/ice%20cream.png" },
   { id: "milk", word: "milk", zh: "牛奶", image: "assets/foods/milk.png" },
   { id: "pizza", word: "pizza", zh: "披萨", image: "assets/foods/pizza.png" }
 ];
