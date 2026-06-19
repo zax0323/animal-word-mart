@@ -1,50 +1,50 @@
 const gameAssets = {
-  homeBackground: "assets/home/home-hero.jpg",
-  gameBackground: "assets/backgrounds/game-scene.jpg",
-  dialogueBubble: "assets/dialog-bubble.png"
+  homeBackground: "assets/home/home-hero.webp",
+  gameBackground: "assets/backgrounds/game-scene.webp",
+  dialogueBubble: "assets/dialog-bubble.webp"
 };
 
 const characters = [
   {
     id: "rabbit",
     name: "Rabbit",
-    image: "assets/characters/rabbit.png",
-    happyImage: "assets/characters/rabbit-happy.png",
-    sadImage: "assets/characters/rabbit-sad.png",
+    image: "assets/characters/rabbit.webp",
+    happyImage: "assets/characters/rabbit-happy.webp",
+    sadImage: "assets/characters/rabbit-sad.webp",
     fallbackEmoji: "🐰",
     anchor: "left"
   },
   {
     id: "cat",
     name: "Cat",
-    image: "assets/characters/cat.png",
-    happyImage: "assets/characters/cat-happy.png",
-    sadImage: "assets/characters/cat-sad.png",
+    image: "assets/characters/cat.webp",
+    happyImage: "assets/characters/cat-happy.webp",
+    sadImage: "assets/characters/cat-sad.webp",
     fallbackEmoji: "🐱",
     anchor: "left"
   },
   {
     id: "dog",
     name: "Dog",
-    image: "assets/characters/dog.png",
-    happyImage: "assets/characters/dog-happy.png",
-    sadImage: "assets/characters/dog-sad.png",
+    image: "assets/characters/dog.webp",
+    happyImage: "assets/characters/dog-happy.webp",
+    sadImage: "assets/characters/dog-sad.webp",
     fallbackEmoji: "🐶",
     anchor: "left"
   }
 ];
 
 const foods = [
-  { id: "bread", word: "bread", zh: "面包", image: "assets/foods/bread.png" },
-  { id: "cake", word: "cake", zh: "蛋糕", image: "assets/foods/cake.png" },
-  { id: "candy", word: "candy", zh: "糖果", image: "assets/foods/candy.png" },
-  { id: "cheese", word: "cheese", zh: "奶酪", image: "assets/foods/cheese.png" },
-  { id: "cookie", word: "cookie", zh: "饼干", image: "assets/foods/cookie.png" },
-  { id: "donut", word: "donut", zh: "甜甜圈", image: "assets/foods/donut.png" },
-  { id: "egg", word: "egg", zh: "鸡蛋", image: "assets/foods/egg.png" },
-  { id: "ice-cream", word: "ice cream", zh: "冰淇淋", image: "assets/foods/ice%20cream.png" },
-  { id: "milk", word: "milk", zh: "牛奶", image: "assets/foods/milk.png" },
-  { id: "pizza", word: "pizza", zh: "披萨", image: "assets/foods/pizza.png" }
+  { id: "bread", word: "bread", zh: "面包", image: "assets/foods/bread.webp" },
+  { id: "cake", word: "cake", zh: "蛋糕", image: "assets/foods/cake.webp" },
+  { id: "candy", word: "candy", zh: "糖果", image: "assets/foods/candy.webp" },
+  { id: "cheese", word: "cheese", zh: "奶酪", image: "assets/foods/cheese.webp" },
+  { id: "cookie", word: "cookie", zh: "饼干", image: "assets/foods/cookie.webp" },
+  { id: "donut", word: "donut", zh: "甜甜圈", image: "assets/foods/donut.webp" },
+  { id: "egg", word: "egg", zh: "鸡蛋", image: "assets/foods/egg.webp" },
+  { id: "ice-cream", word: "ice cream", zh: "冰淇淋", image: "assets/foods/ice%20cream.webp" },
+  { id: "milk", word: "milk", zh: "牛奶", image: "assets/foods/milk.webp" },
+  { id: "pizza", word: "pizza", zh: "披萨", image: "assets/foods/pizza.webp" }
 ];
 
 const demandTemplates = [
