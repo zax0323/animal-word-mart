@@ -1,51 +1,63 @@
 const gameAssets = {
-  homeBackground: "assets/home/home-hero.webp",
-  gameBackground: "assets/backgrounds/game-scene.webp",
-  dialogueBubble: "assets/dialog-bubble.webp"
+  homeBackground: "assets/home/home-hero.jpg",
+  gameBackground: "assets/backgrounds/game-scene.jpg",
+  dialogueBubble: "assets/dialog-bubble.png"
 };
 
 const characters = [
   {
     id: "rabbit",
     name: "Rabbit",
-    image: "assets/characters/rabbit.webp",
-    happyImage: "assets/characters/rabbit-happy.webp",
-    sadImage: "assets/characters/rabbit-sad.webp",
+    image: "assets/characters/rabbit.png",
+    happyImage: "assets/characters/rabbit-happy.png",
+    sadImage: "assets/characters/rabbit-sad.png",
     fallbackEmoji: "🐰",
     anchor: "left"
   },
   {
     id: "cat",
     name: "Cat",
-    image: "assets/characters/cat.webp",
-    happyImage: "assets/characters/cat-happy.webp",
-    sadImage: "assets/characters/cat-sad.webp",
+    image: "assets/characters/cat.png",
+    happyImage: "assets/characters/cat-happy.png",
+    sadImage: "assets/characters/cat-sad.png",
     fallbackEmoji: "🐱",
     anchor: "left"
   },
   {
     id: "dog",
     name: "Dog",
-    image: "assets/characters/dog.webp",
-    happyImage: "assets/characters/dog-happy.webp",
-    sadImage: "assets/characters/dog-sad.webp",
+    image: "assets/characters/dog.png",
+    happyImage: "assets/characters/dog-happy.png",
+    sadImage: "assets/characters/dog-sad.png",
     fallbackEmoji: "🐶",
     anchor: "left"
   }
 ];
 
 const foods = [
-  { id: "bread", word: "bread", zh: "面包", image: "assets/foods/bread.webp" },
-  { id: "cake", word: "cake", zh: "蛋糕", image: "assets/foods/cake.webp" },
-  { id: "candy", word: "candy", zh: "糖果", image: "assets/foods/candy.webp" },
-  { id: "cheese", word: "cheese", zh: "奶酪", image: "assets/foods/cheese.webp" },
-  { id: "cookie", word: "cookie", zh: "饼干", image: "assets/foods/cookie.webp" },
-  { id: "donut", word: "donut", zh: "甜甜圈", image: "assets/foods/donut.webp" },
-  { id: "egg", word: "egg", zh: "鸡蛋", image: "assets/foods/egg.webp" },
-  { id: "ice-cream", word: "ice cream", zh: "冰淇淋", image: "assets/foods/ice%20cream.webp" },
-  { id: "milk", word: "milk", zh: "牛奶", image: "assets/foods/milk.webp" },
-  { id: "pizza", word: "pizza", zh: "披萨", image: "assets/foods/pizza.webp" }
+  { id: "bread", word: "bread", zh: "面包", image: "assets/foods/bread.png" },
+  { id: "cake", word: "cake", zh: "蛋糕", image: "assets/foods/cake.png" },
+  { id: "candy", word: "candy", zh: "糖果", image: "assets/foods/candy.png" },
+  { id: "cheese", word: "cheese", zh: "奶酪", image: "assets/foods/cheese.png" },
+  { id: "cookie", word: "cookie", zh: "饼干", image: "assets/foods/cookie.png" },
+  { id: "donut", word: "donut", zh: "甜甜圈", image: "assets/foods/donut.png" },
+  { id: "egg", word: "egg", zh: "鸡蛋", image: "assets/foods/egg.png" },
+  { id: "ice-cream", word: "ice cream", zh: "冰淇淋", image: "assets/foods/ice%20cream.png" },
+  { id: "milk", word: "milk", zh: "牛奶", image: "assets/foods/milk.png" },
+  { id: "pizza", word: "pizza", zh: "披萨", image: "assets/foods/pizza.png" }
 ];
+
+
+// Preload all character and food images on page load
+const allImageUrls = new Set();
+characters.forEach(c => { allImageUrls.add(c.image); allImageUrls.add(c.happyImage); allImageUrls.add(c.sadImage); });
+foods.forEach(f => allImageUrls.add(f.image));
+allImageUrls.add(gameAssets.homeBackground);
+allImageUrls.add(gameAssets.gameBackground);
+allImageUrls.add(gameAssets.dialogueBubble);
+window.addEventListener("DOMContentLoaded", () => {
+  allImageUrls.forEach(url => { const img = new Image(); img.src = url; });
+});
 
 const demandTemplates = [
   {
@@ -280,12 +292,23 @@ function togglePause() {
 }
 
 function renderImageOrPlaceholder({ src, alt, placeholder, className = "", emoji = "" }) {
+  const img = new Image();
+  img.src = src;
+  img.alt = alt;
+  img.className = className;
+  img.style.cssText = "display:block;max-width:100%;max-height:100%;";
+  img.onerror = function() {
+    this.style.display = "none";
+    const fallback = this.nextElementSibling;
+    if (fallback) fallback.style.display = "grid";
+  };
   return `
     <img
       src="${src}"
       alt="${alt}"
       class="${className}"
-      onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+      onerror="if(this.nextElementSibling)this.nextElementSibling.style.display='grid';"
+      style="display:block;max-width:100%;max-height:100%;"
     />
     <div class="asset-missing hidden h-full w-full place-items-center rounded-[18px] p-3 text-center text-sm font-black text-cream-100">
       <div>
